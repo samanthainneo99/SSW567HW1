@@ -1,18 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jan 14 13:44:00 2016
+This program determines if a given 3 sides can create a valid triangle, and then 
+classifies it as equilateral, isoceles, scalene, or right. 
 
-This file shows some simple (and buggy) python code to solve the Triangles assignment.   
-The primary goal of this file is to demonstrate a simple python program and the use of the
-unittest package.
-
-Note that this code includes intentional errors for you to find.
-
-
-@author: jrr
+@author: Samantha Inneo
 """
 
-import unittest     # this makes Python unittest module available
+import unittest
+from xml.etree.ElementTree import TreeBuilder     # this makes Python unittest module available
 
 def classifyTriangle(a,b,c):
     """
@@ -29,10 +24,45 @@ def classifyTriangle(a,b,c):
         
         
     """
+    ''' Setting the variables in size order for ease later'''
+    if a <= b and a <= c:
+        newA = a
+        if b <= c:
+            newB = b
+            newC = c
+        else: 
+            newB = c
+            newC = b
+
+
+    if b <= c and b <= a:
+        newA = b
+        if c <= a:
+            newB = c
+            newC = a
+        else: 
+            newB = a
+            newC = c
+
+    if c <= a and c <= b:
+        newA = c
+        if a <= b:
+            newB = a
+            newC = b
+        else: 
+            newB = b
+            newC = a
+
+
+    pyth = newA**2 + newB**2
     # Note: This code is completely bogus but demonstrates a few features of python
-    if a == 3 and b == 4 and c == 5:
+    if newA == newB == newC:
+        return 'Equilateral'
+    elif newA == newB or newB == newC or newA == newC:
+        return 'Isoceles'
+    elif pyth == newC**2:
         return 'Right'
-    elif a == 3 and b == c:
+    elif (newA + newB) < newC:
         return 'Scalene'
     else:
         return 'NotATriangle'
@@ -67,6 +97,7 @@ if __name__ == '__main__':
     # examples of running the code
     runClassifyTriangle(1,2,3)
     runClassifyTriangle(1,1,1)
+    # runClassifyTriangle(10,10,10)
     
-    unittest.main(exit=False) # this runs all of the tests - use this line if running from Spyder
-    #unittest.main(exit=True) # this runs all of the tests - use this line if running from the command line
+    #unittest.main(exit=False) # this runs all of the tests - use this line if running from Spyder
+    unittest.main(exit=True) # this runs all of the tests - use this line if running from the command line
