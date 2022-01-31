@@ -3,6 +3,8 @@
 This program determines if a given 3 sides can create a valid triangle, and then 
 classifies it as equilateral, isoceles, scalene, or right. 
 
+Github Link: https://github.com/samanthainneo99/SSW567HW1
+
 @author: Samantha Inneo
 """
 
