@@ -52,20 +52,26 @@ def classifyTriangle(a,b,c):
         else: 
             newB = b
             newC = a
+    #print("A: " + str(newA) +  " B: " +str(newB) + " C: " + str(newC))
 
-
+    #pyth = one side of pythagorean theorem to check if it is a right triangle later
     pyth = newA**2 + newB**2
-    # Note: This code is completely bogus but demonstrates a few features of python
-    if newA == newB == newC:
+
+
+    #Here, I am actually checking for the criteria of each type of triangle
+    
+    if (newA + newB) <= newC:
+        return 'NotATriangle'
+    elif newA == newB == newC:
         return 'Equilateral'
-    elif newA == newB or newB == newC or newA == newC:
+    elif (newA == newB) or newB == newC or newA == newC:
         return 'Isoceles'
     elif pyth == newC**2:
         return 'Right'
-    elif (newA + newB) < newC:
+    elif (newA + newB) > newC:
         return 'Scalene'
-    else:
-        return 'NotATriangle'
+    
+       
     
         
         
@@ -85,19 +91,35 @@ class TestTriangles(unittest.TestCase):
         # your tests go here.  Include as many tests as you'd like
         self.assertEqual(classifyTriangle(3,4,5),'Right','3,4,5 is a Right triangle')
         
+    #I made this set to be all NotEqual
     def testMyTestSet2(self): 
         # define multiple test sets to test different aspects of the code
         # notice that tests can have bugs too!
-        self.assertEqual(classifyTriangle(1,1,1),'Equilateral','1,1,1 should be equilateral')
+        self.assertNotEqual(classifyTriangle(1,1,2),'Equilateral','1,1,2 should be NotATriangle')
         self.assertNotEqual(classifyTriangle(10,10,10),'Isoceles','Should be Equilateral')
-        self.assertEqual(classifyTriangle(10,15,30),'Scalene','Should be Isoceles')
+        self.assertNotEqual(classifyTriangle(15,15,30),'Scalene', '10, 15, 30 should be Isosceles')
+
+    def testMyTestSet3(self): 
+        self.assertEqual(classifyTriangle(1,1,1),'Equilateral','1,1,1 should be equilateral')
+        self.assertEqual(classifyTriangle(1,1,1),'Equilateral','12,12,12 should be equilateral')
+        self.assertEqual(classifyTriangle(10,10,20),'NotATriangle','10,10,20 should be NotATriangle')
+        self.assertEqual(classifyTriangle(10,10,100),'NotATriangle','10,10,20 should be NotATriangle')
+        self.assertEqual(classifyTriangle(10,15,30),'NotATriangle', '10, 15, 30 should be NotATriangle')
+        self.assertEqual(classifyTriangle(5,4,3),'Right', '3,4,5 should be Right')
+        self.assertEqual(classifyTriangle(10,10,18),'Isoceles', '10, 10, 18 should be Isoceles')
+        self.assertEqual(classifyTriangle(10,10,18),'Isoceles', '5.5, 5.5, 10 should be Isoceles')
+        self.assertEqual(classifyTriangle(2,5,6),'Scalene','2,5,6 should be Scalene')
+        self.assertEqual(classifyTriangle(2,5,6),'Scalene','2.5,5.5,6.5 should be Scalene')
+
+
+
         
 
 if __name__ == '__main__':
     # examples of running the code
-    runClassifyTriangle(1,2,3)
-    runClassifyTriangle(1,1,1)
-    # runClassifyTriangle(10,10,10)
+    # runClassifyTriangle(1,2,3)
+    # runClassifyTriangle(1,1,1)
+    #runClassifyTriangle(1,5,4)
     
-    #unittest.main(exit=False) # this runs all of the tests - use this line if running from Spyder
-    unittest.main(exit=True) # this runs all of the tests - use this line if running from the command line
+    unittest.main(exit=False) # this runs all of the tests - use this line if running from Spyder
+    #unittest.main(exit=True) # this runs all of the tests - use this line if running from the command line
