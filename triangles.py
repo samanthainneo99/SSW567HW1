@@ -13,7 +13,6 @@ from xml.etree.ElementTree import TreeBuilder     # this makes Python unittest m
 
 def classifyTriangle(a,b,c):
     """
-    
     This function returns a string with the type of triangle from three  values
     corresponding to the lengths of the three sides of the Triangle.
     
@@ -22,9 +21,7 @@ def classifyTriangle(a,b,c):
         If exactly one pair of sides are equal, return 'Isoceles'
         If no pair of  sides are equal, return 'Scalene'
         If not a valid triangle, then return 'NotATriangle'
-        If the sum of any two sides equals the squate of the third side, then return 'Right'
-        
-        
+        If the sum of any two sides equals the squate of the third side, then return 'Right' 
     """
     ''' Setting the variables in size order for ease later'''
     if a <= b and a <= c:
@@ -54,14 +51,11 @@ def classifyTriangle(a,b,c):
         else: 
             newB = b
             newC = a
-    #print("A: " + str(newA) +  " B: " +str(newB) + " C: " + str(newC))
 
     #pyth = one side of pythagorean theorem to check if it is a right triangle later
     pyth = newA**2 + newB**2
 
-
-    #Here, I am actually checking for the criteria of each type of triangle
-    
+    #Here, I am actually checking for the criteria of each type of triangle    
     if (newA + newB) <= newC:
         return 'NotATriangle'
     elif newA == newB == newC:
@@ -72,10 +66,6 @@ def classifyTriangle(a,b,c):
         return 'Right'
     elif (newA + newB) > newC:
         return 'Scalene'
-    
-       
-    
-        
         
 def runClassifyTriangle(a, b, c):
     """ invoke classifyTriangle with the specified arguments and print the result """
@@ -120,8 +110,6 @@ class TestTriangles(unittest.TestCase):
 if __name__ == '__main__':
     # examples of running the code
     # runClassifyTriangle(1,2,3)
-    # runClassifyTriangle(1,1,1)
-    #runClassifyTriangle(1,5,4)
     
     unittest.main(exit=False) # this runs all of the tests - use this line if running from Spyder
     #unittest.main(exit=True) # this runs all of the tests - use this line if running from the command line
